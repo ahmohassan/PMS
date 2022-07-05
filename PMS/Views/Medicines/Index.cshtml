@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PMS.Models.Medicine>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">DataTable with Midical Table</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <hr />
+
+        <p>
+            <a asp-action="Create" class="btn btn-sm btn-success">Add Medicine</a>
+        </p>
+        <table id="example1" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MedcineCat)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MedicineName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MedcineCat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MedicineName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.MedicineID"><i class="fas fa-edit"></i></a> 
+                            <a asp-action="Details" asp-route-id="@item.MedicineID"><i class="fa fa-eye"></i></a> 
+                            <a asp-action="Delete" asp-route-id="@item.MedicineID"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+</div>

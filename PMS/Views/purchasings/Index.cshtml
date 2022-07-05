@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PMS.Models.purchasing>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">DataTable with purchasings Table</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <hr />
+
+        <p>
+            <a asp-action="Create" class="btn btn-sm btn-success">Make payment</a>
+        </p>
+        <table id="example1" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Customer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Medicine)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.CustomerFullname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Medicine.MedicineName)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.purchasingID"><i class="fas fa-edit"></i></a> 
+                            <a asp-action="Details" asp-route-id="@item.purchasingID"><i class="fa fa-eye"></i></a> 
+                            <a asp-action="Delete" asp-route-id="@item.purchasingID"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

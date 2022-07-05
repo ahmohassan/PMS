@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PMS.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">DataTable with Customers Table</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <hr />
+
+        <p>
+            <a asp-action="Create" class="btn btn-sm btn-success">Add Customer</a>
+        </p>
+        <table id="example1" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerFullname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerFullname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CustomerID"><i class="fas fa-edit"></i></a> 
+                            <a asp-action="Details" asp-route-id="@item.CustomerID"><i class="fa fa-eye"></i></a> 
+                            <a asp-action="Delete" asp-route-id="@item.CustomerID"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+</div>
